@@ -1,25 +1,29 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { Switch, Route, Redirect } from 'react-router-dom'
+import { MainPage } from './pages/MainPage';
+import NotFound from './pages/NotFound';
+import Header from './components/Header';
+import AuthPage from './pages/AuthPage';
+import { useSelector, useDispatch } from 'react-redux';
 
 function App() {
+  const isAuth = useSelector<any, any>(state => state.authReducer.isAuth);
+  console.log(isAuth)
+  //const dispatch = useDispatch();
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <div className="App" >
+      <Header />
+      <Switch>
+        <Route exact path="/login" component={AuthPage} />
+        {localStorage.getItem("isAuth") || isAuth ? (
+          <>
+            <Route exact path="/" component={MainPage} />
+            <Route exact path="/NotFound" component={NotFound} />
+          </>) : (<Redirect to="/login" />)}
+
+      </Switch>
+    </div >
   );
 }
 

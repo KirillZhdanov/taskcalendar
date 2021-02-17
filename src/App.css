@@ -1,7 +1,25 @@
 .App {
   text-align: center;
 }
-
+.tasks,
+.task {
+  height: 100%;
+  text-align: center;
+}
+.task {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.red {
+  background-color: #d64f4f;
+}
+.green {
+  background-color: rgb(93, 209, 93);
+}
+.gray {
+  background-color: rgb(179, 171, 171);
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;

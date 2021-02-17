@@ -1,20 +1,28 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 import { StyledLink, StyledHeader } from "../StyledComponents";
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from '../../redux/rsf';
+import { signOut } from '../../redux/actions';
 
 
 const Header = () => {
     const { isAuth, response } = useSelector<any, any>(state => state.authReducer);
-    console.log(isAuth)
+    const [user] = useAuthState(auth)
+    console.log(isAuth);
+    const dispatch = useDispatch()
+    const handleSignOut = () => {
+        dispatch(signOut())
+    }
     return (
         <StyledHeader>
             <h1>Task Calendar</h1>
-            {!(isAuth || localStorage.getItem("isAuth")) ? (
+            {!(user) ? (
                 <div>
                     <StyledLink as={Link} to="/login">Login/Sign Up</StyledLink>
                 </div>
-            ) : (<div>{response?.user?.email}</div>)}
+            ) : (<><div>{user?.email}</div><button onClick={handleSignOut}>Sign Out</button></>)}
         </StyledHeader>
     )
 }

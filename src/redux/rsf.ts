@@ -10,7 +10,7 @@ const firebaseApp = firebase.initializeApp({
   messagingSenderId: "1007822470195",
   appId: "1:1007822470195:web:bf8afeebae450f3bcbb746",
 });
-
+export const auth = firebase.auth();
 const rsf = new ReduxSagaFirebase(firebaseApp);
 
 export default rsf;

@@ -1,22 +1,18 @@
 import React from 'react'
-import { useSelector } from "react-redux";
-import Calendar from '../../components/Calendar';
 import { Link } from 'react-router-dom';
-import { StyledLink } from "../../components/StyledComponents";
+import { StyledLink, Calendar } from "../../components";
 
 
 
-export const MainPage = () => {
-    const state = useSelector<any, any>(state => state);
-
-    console.log("STATE: ", state);
+const MainPage = () => {
 
     return (
-        <div>
-            MainPage
-            <StyledLink as={Link} to="/AddNewTask">Add New Task</StyledLink>
-
+        <>
+            <div>
+                <StyledLink as={Link} to="/AddNewTask">Add New Task</StyledLink>
+            </div>
             <Calendar />
-        </div>
+        </>
     )
 }
+export default MainPage;

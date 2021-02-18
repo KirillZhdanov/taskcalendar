@@ -1,14 +1,13 @@
 import React from 'react'
+import { StyledBackground, StyledLink } from '../../components'
+import image from "../../assets/images/404.png"
+import { Link } from 'react-router-dom'
 
-interface Props {
-
-}
-
-const NotFound = (props: Props) => {
+const NotFound = () => {
     return (
-        <div>
-            Not found
-        </div>
+        <StyledBackground imageUrl={image}>
+            <StyledLink as={Link} to="/">Back</StyledLink>
+        </StyledBackground>
     )
 }
 

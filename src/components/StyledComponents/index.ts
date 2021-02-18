@@ -17,4 +17,17 @@ const StyledHeader = styled.nav`
   justify-content: space-between;
   align-items: center;
 `;
-export { StyledLink, StyledHeader };
+interface BG {
+  imageUrl: string;
+}
+const StyledBackground = styled.div`
+  width: 100%;
+  height: 100%;
+  min-height:80vh;
+  background:url(${(props: BG) => props.imageUrl});
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position:center;
+}
+`;
+export { StyledLink, StyledHeader, StyledBackground };

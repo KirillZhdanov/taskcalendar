@@ -1,24 +1,22 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
-import { StyledLink } from "../../components/StyledComponents";
-import { useDispatch, useSelector } from "react-redux";
+import { StyledLink } from "../../components";
+import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import { writeTaskToDB } from "../../redux/actions";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from '../../redux/rsf';
+import { dateFormat } from "../../utils";
+import { AddNewTask } from '../../models';
 
-interface Props {
 
-}
-
-const AddNewEventPage = (props: Props) => {
-    // const user = useSelector<any, any>(state => state.authReducer.response.user.uid);
+const AddNewTaskPage = () => {
     const [user] = useAuthState(auth)
     const uid = user.uid;
     const dispatch = useDispatch();
-    const onSubmit = (data: any) => {
-        console.log(data)
-        dispatch(writeTaskToDB({ user: uid, dbcell: { currentDate: data.taskDate, hours: data.hours } }))
+    const onSubmit = (data: AddNewTask) => {
+        const date = new Date(data.taskDate);
+        dispatch(writeTaskToDB({ user: uid, dbcell: { currentDate: dateFormat(date.getFullYear(), date.getMonth() + 1, date.getDate()), hours: data.hours } }))
     }
     const { register, handleSubmit } = useForm();
 
@@ -28,7 +26,7 @@ const AddNewEventPage = (props: Props) => {
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div>
                     <label>Date:</label>
-                    <input name="taskDate" type="text" ref={register} required />
+                    <input name="taskDate" type="date" ref={register} required pattern="\d{2}.\d{2}.\d{4}" />
                 </div>
                 <div>
                     <label>Hours:</label>
@@ -42,4 +40,4 @@ const AddNewEventPage = (props: Props) => {
     )
 }
 
-export default AddNewEventPage
+export default AddNewTaskPage

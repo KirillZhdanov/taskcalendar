@@ -1,5 +1,8 @@
-import firebase from "firebase";
-import "@firebase/firestore";
+import firebase from "firebase/app";
+import "firebase/auth";
+import "firebase/storage";
+import "firebase/database";
+
 import ReduxSagaFirebase from "redux-saga-firebase";
 
 const firebaseApp = firebase.initializeApp({

@@ -21,8 +21,9 @@ const AuthPage = () => {
             dispatch(registrationWithEmail({ email: data.email, password: data.password, userName: data.userName }));
         }
     }
-    const toggleActionType = (e: any) => {
-        formAction.type = e.target.name;
+    const toggleActionType = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+        const { name } = e.target as HTMLButtonElement;
+        formAction.type = name;
     }
 
     const { register, handleSubmit } = useForm();

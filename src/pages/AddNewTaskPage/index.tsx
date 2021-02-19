@@ -30,7 +30,7 @@ const AddNewTaskPage = () => {
         const formatedDate = dateFormat(date.getFullYear(), date.getMonth() + 1, date.getDate());
         const selectedDateTasksHours = tasks.filter(el => el.currentDate === formatedDate).reduce((acc: number, curr: Task) => acc + Number(curr.hours), 0);
         const TotalHours = selectedDateTasksHours + Number(data.hours);
-        if (TotalHours <= 24 && TotalHours > 0) {
+        if (TotalHours <= 24 && Number(data.hours) > 0) {
             dispatch(writeTaskToDB({ user: uid, dbcell: { currentDate: dateFormat(date.getFullYear(), date.getMonth() + 1, date.getDate()), hours: data.hours } }));
             setRedirect(true);
         }

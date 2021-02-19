@@ -1,55 +1,62 @@
-export interface LoginEmail {
+export type LoginEmail = {
   email: string;
   password: string;
-}
-export interface RegistrationEmail {
+};
+export type RegistrationEmail = {
   email: string;
   password: string;
   userName?: string;
-}
-export interface WriteTask {
+};
+export type WriteTask = {
   user: string;
   dbcell: {};
-}
-export interface ReadTasks {
+};
+export type ReadTasks = {
   user: string;
-}
-export interface AddNewTask {
+};
+export type AddNewTask = {
   taskDate: string;
   hours: string;
-}
-export interface RegistrationEmailWorker {
+};
+export type RegistrationEmailWorker = {
   type: "REGISTRATION_WITH_EMAIL";
   email: string;
   password: string;
   userName?: string;
-}
-export interface ReadDBWorker {
+};
+export type ReadDBWorker = {
   type: "READ_CALENDAR_DATA";
   user: string;
-}
-export interface WriteDBWorker {
+};
+export type WriteDBWorker = {
   type: "WRITE_TO_DB";
   user: string;
   dbcell: {};
-}
-export interface AuthEmailWorker {
+};
+export type AuthEmailWorker = {
   type: "LOGIN_WITH_EMAIL";
   email: string;
   password: string;
   userName?: string;
-}
-export interface Task {
+};
+export type Task = {
   currentDate: string;
   hours: number;
-}
-export interface CalendarState {
-  tasks: {
-    currentDate?: string;
-    hours?: number;
-  };
-}
-export interface CalendarAction {
+};
+
+export type CalendarState = {
+  tasks: Task[];
+};
+export type CalendarAction = {
   type: string;
-  payload: {};
+  payload: Task[];
+};
+export interface BgStyled {
+  imageUrl: string;
+}
+
+export interface ProtectedRoute {
+  exact?: boolean;
+  path: string;
+  component: () => JSX.Element;
 }

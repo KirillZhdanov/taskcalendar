@@ -1,7 +1,17 @@
 import Calendar from "./Calendar";
 import Header from "./Header";
 import ProtectedRouter from "./ProtectedRouter";
-import { StyledHeader, StyledLink, StyledBackground } from "./StyledComponents";
+import {
+  StyledHeader,
+  StyledLink,
+  StyledBackground,
+  StyledHeaderAuth,
+  StyledHeaderUserName,
+  StyledBtn,
+  FormBtns,
+  FormInput,
+  FormContainer,
+} from "./StyledComponents";
 
 export {
   Calendar,
@@ -10,4 +20,10 @@ export {
   StyledHeader,
   StyledLink,
   StyledBackground,
+  StyledHeaderAuth,
+  StyledHeaderUserName,
+  StyledBtn,
+  FormBtns,
+  FormInput,
+  FormContainer,
 };

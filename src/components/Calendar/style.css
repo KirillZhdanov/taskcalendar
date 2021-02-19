@@ -1,0 +1,5 @@
+@media only screen and (max-width: 650px) {
+  .ant-picker-calendar-full .ant-picker-panel .ant-picker-calendar-date {
+    padding: 0;
+  }
+}

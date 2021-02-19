@@ -14,7 +14,7 @@ function* signOutWorker() {
   try {
     yield call(rsf.auth.signOut);
   } catch (error) {
-    throw new Error(`Login failed: ${error}`);
+    throw new Error(`Sign out failed: ${error}`);
   }
 }
 

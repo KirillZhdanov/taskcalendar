@@ -1,17 +1,18 @@
-import React from 'react'
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { StyledLink, StyledHeader } from "../StyledComponents";
+import { StyledLink, StyledHeader, StyledHeaderAuth, StyledHeaderUserName, StyledBtn } from "../StyledComponents";
 import { useDispatch } from 'react-redux';
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from '../../redux/rsf';
-import { signOut } from '../../redux/actions';
+import { setCalendarData, signOut } from '../../redux/actions';
 
 
 const Header = () => {
     const [user] = useAuthState(auth)
     const dispatch = useDispatch()
     const handleSignOut = () => {
-        dispatch(signOut())
+        dispatch(signOut());
+        dispatch(setCalendarData([{}]))
     }
     return (
         <StyledHeader>
@@ -20,7 +21,7 @@ const Header = () => {
                 <div>
                     <StyledLink as={Link} to="/login">Login/Sign Up</StyledLink>
                 </div>
-            ) : (<div><div>{user?.email}</div><button onClick={handleSignOut}>Sign Out</button></div>)}
+            ) : (<StyledHeaderAuth><StyledHeaderUserName>{user?.email}</StyledHeaderUserName><StyledBtn onClick={handleSignOut}>Sign Out</StyledBtn></StyledHeaderAuth>)}
         </StyledHeader>
     )
 }

@@ -1,5 +1,6 @@
 import React from 'react';
 import 'antd/dist/antd.css';
+import './style.css'
 import { Calendar as CalendarAntd } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { readCalendarData } from '../../redux/actions';
@@ -15,7 +16,7 @@ const getListData = (value: moment.Moment, data: Task[]) => {
     const textDate = dateFormat(value.year(), value.month() + 1, value.date());
     return data.filter((item: Task) => item.currentDate === textDate);
 }
-const dateCellRender = (value: moment.Moment, data: any) => {
+const dateCellRender = (value: moment.Moment, data: Task[]) => {
     const listData = getListData(value, data);
 
     const taskDayHoursTotal = listData.reduce((acc: number, curr: Task) => acc + Number(curr.hours), 0) || 0;
@@ -29,12 +30,12 @@ const dateCellRender = (value: moment.Moment, data: any) => {
 const Calendar = () => {
     const [user] = useAuthState(auth);
     const uid = user?.uid;
-    const calendarReducer = useSelector((state: RootState) => state.calendarReducer);
-    const tasks = Object.values(calendarReducer.tasks);
+    const tasks = useSelector((state: RootState) => state.calendarReducer.tasks);
     const dispatch = useDispatch();
     React.useEffect(() => {
         dispatch(readCalendarData(uid));
     }, [user, uid])
+
     return (
         <>
             <CalendarAntd dateCellRender={(value) => dateCellRender(value, tasks)} />

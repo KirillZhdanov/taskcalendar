@@ -2,20 +2,15 @@ import React from 'react';
 import 'antd/dist/antd.css';
 import './style.css'
 import { Calendar as CalendarAntd } from 'antd';
-import { useDispatch, useSelector } from 'react-redux';
-import { readCalendarData } from '../../redux/actions';
-import { useAuthState } from "react-firebase-hooks/auth";
-import { auth } from '../../redux/rsf';
 import { dateFormat } from "../../utils";
-import { RootState } from '../../redux/store';
-import { Task } from '../../models';
+import { CalendarState, Task } from '../../models';
 
 
 const getListData = (value: moment.Moment, data: Task[]) => {
-
     const textDate = dateFormat(value.year(), value.month() + 1, value.date());
     return data.filter((item: Task) => item.currentDate === textDate);
 }
+
 const dateCellRender = (value: moment.Moment, data: Task[]) => {
     const listData = getListData(value, data);
 
@@ -27,14 +22,7 @@ const dateCellRender = (value: moment.Moment, data: Task[]) => {
     );
 }
 
-const Calendar = () => {
-    const [user] = useAuthState(auth);
-    const uid = user?.uid;
-    const tasks = useSelector((state: RootState) => state.calendarReducer.tasks);
-    const dispatch = useDispatch();
-    React.useEffect(() => {
-        dispatch(readCalendarData(uid));
-    }, [user, uid])
+const Calendar = ({ tasks }: CalendarState) => {
 
     return (
         <>

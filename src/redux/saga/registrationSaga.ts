@@ -13,7 +13,7 @@ function* registrationWorker({
     yield call(rsf.auth.updateProfile, { displayName: userName });
     yield call(rsf.auth.signInWithEmailAndPassword, email, password);
   } catch (error) {
-    throw new Error(`Registration failed: ${error}`);
+    console.log(`Registration failed: ${error}`);
   }
 }
 

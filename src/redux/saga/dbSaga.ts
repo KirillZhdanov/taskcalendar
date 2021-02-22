@@ -9,7 +9,7 @@ function* writeToDBWorker({ user, dbcell }: WriteDBWorker) {
     const read = yield call(rsf.database.read, `tasks/${user}`);
     yield put(setCalendarData(Object.values(read)));
   } catch (error) {
-    throw new Error(`Write to db failed: ${error}`);
+    console.log(`Write to db failed: ${error}`);
   }
 }
 function* readFromDBWorker({ user }: ReadDBWorker) {
@@ -17,7 +17,7 @@ function* readFromDBWorker({ user }: ReadDBWorker) {
     const read = yield call(rsf.database.read, `tasks/${user}`);
     if (read) yield put(setCalendarData(Object.values(read)));
   } catch (error) {
-    throw new Error(`Read from db failed: ${error}`);
+    console.log(`Read from db failed: ${error}`);
   }
 }
 

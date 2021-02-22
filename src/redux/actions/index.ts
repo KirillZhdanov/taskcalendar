@@ -1,8 +1,8 @@
 import {
-  LoginEmail,
-  ReadTasks,
-  RegistrationEmail,
-  WriteTask,
+  LoginEmailPayload,
+  TasksReaderPayload,
+  RegistrationEmailPayload,
+  TaskWriterPayload,
 } from "../../models";
 
 export const SET_CALENDAR_DATA = "SET_CALENDAR_DATA";
@@ -16,7 +16,7 @@ export const setCalendarData = (payload: {}) => ({
   type: SET_CALENDAR_DATA,
   payload,
 });
-export const loginWithEmail = (payload: LoginEmail) => ({
+export const loginWithEmail = (payload: LoginEmailPayload) => ({
   type: LOGIN_WITH_EMAIL,
   email: payload.email,
   password: payload.password,
@@ -25,18 +25,18 @@ export const signOut = () => ({
   type: SIGN_OUT,
 });
 
-export const registrationWithEmail = (payload: RegistrationEmail) => ({
+export const registrationWithEmail = (payload: RegistrationEmailPayload) => ({
   type: REGISTRATION_WITH_EMAIL,
   email: payload.email,
   password: payload.password,
   userName: payload.userName,
 });
-export const writeTaskToDB = (payload: WriteTask) => ({
+export const writeTaskToDB = (payload: TaskWriterPayload) => ({
   type: WRITE_TO_DB,
   user: payload.user,
   dbcell: payload.dbcell,
 });
-export const readCalendarData = (payload: ReadTasks) => ({
+export const readCalendarData = (payload: TasksReaderPayload) => ({
   type: READ_CALENDAR_DATA,
   user: payload,
 });

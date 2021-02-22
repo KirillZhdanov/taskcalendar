@@ -4,7 +4,7 @@ import { StyledLink, StyledHeader, StyledHeaderAuth, StyledHeaderUserName, Style
 import { useDispatch } from 'react-redux';
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from '../../redux/rsf';
-import { setCalendarData, signOut } from '../../redux/actions';
+import { signOut } from '../../redux/actions';
 
 
 const Header = () => {
@@ -12,7 +12,6 @@ const Header = () => {
     const dispatch = useDispatch()
     const handleSignOut = () => {
         dispatch(signOut());
-        dispatch(setCalendarData([{}]))
     }
     return (
         <StyledHeader>

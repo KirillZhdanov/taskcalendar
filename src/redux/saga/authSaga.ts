@@ -7,9 +7,7 @@ function* authWorker({ email, password }: AuthEmailWorker) {
   try {
     yield call(rsf.auth.signInWithEmailAndPassword, email, password);
   } catch (error) {
-    // throw new Error(`Login failed: ${error}`);
     console.log(`Login failed: ${error}`);
-    alert(error);
   }
 }
 function* signOutWorker() {
@@ -17,7 +15,7 @@ function* signOutWorker() {
     yield call(rsf.auth.signOut);
     yield put(setCalendarData([{}]));
   } catch (error) {
-    throw new Error(`Sign out failed: ${error}`);
+    console.log(`Sign out failed: ${error}`);
   }
 }
 

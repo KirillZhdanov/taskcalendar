@@ -1,14 +1,18 @@
+import { type } from "os";
+import { string } from "yup/lib/locale";
 import {
   LoginEmailPayload,
   RegistrationEmailPayload,
   TaskWriterPayload,
   TasksReaderPayload,
   CalendarAction,
+} from "./actions";
+import {
   RegistrationEmailWorker,
   ReadDBWorker,
   WriteDBWorker,
   AuthEmailWorker,
-} from "./actions";
+} from "./sagas";
 export type {
   LoginEmailPayload,
   RegistrationEmailPayload,
@@ -23,9 +27,13 @@ export type {
 
 export type AddNewTaskData = {
   taskDate: string;
-  hours: string;
+  hours: number;
 };
-
+export type AuthFormInitialValues = {
+  userName: string;
+  email: string;
+  password: string;
+};
 export type Task = {
   currentDate: string;
   hours: number;

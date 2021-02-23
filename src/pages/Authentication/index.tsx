@@ -5,7 +5,7 @@ import { loginWithEmail, registrationWithEmail } from "../../redux/actions";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from '../../redux/rsf';
 import { FormBtns, FormInput, StyledBtn, FormContainer } from '../../components';
-import { RegistrationEmailPayload } from '../../models';
+import { AuthFormInitialValues, RegistrationEmailPayload } from '../../models';
 import { Formik, Form, Field, FormikHelpers } from 'formik';
 import * as Yup from 'yup';
 
@@ -26,13 +26,14 @@ const Auth = () => {
         }
         actions.setSubmitting(false);
     }
-    const initialValues: any = { userName: '', email: '', password: '' };
+    const initialValues: AuthFormInitialValues = { userName: '', email: '', password: '' };
     return (
         <FormContainer>{
             !user ? (
                 <Formik
                     initialValues={initialValues}
                     validationSchema={Yup.object({
+                        userName: Yup.string().min(6, 'User name should be longer than 6 characters'),
                         email: Yup.string().email().required(),
                         password: Yup.string().min(6, 'Password should be longer than 6 characters').required()
                     })

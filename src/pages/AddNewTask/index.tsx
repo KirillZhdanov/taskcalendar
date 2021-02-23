@@ -32,7 +32,8 @@ const AddNewTask = () => {
     }
     const dateNow = new Date();
     const dateNowMonth = dateNow.getMonth() + 1;
-    const initialValues: any = { taskDate: `${dateNow.getFullYear()}-${dateNowMonth > 9 ? dateNowMonth : "0" + dateNowMonth}-${dateNow.getDate()}`, hours: 0 };
+
+    const initialValues: AddNewTaskData = { taskDate: `${dateNow.getFullYear()}-${dateNowMonth > 9 ? dateNowMonth : "0" + dateNowMonth}-${dateNow.getDate()}`, hours: 0 };
     return (
         <>{!redirection ?
             (<FormContainer>

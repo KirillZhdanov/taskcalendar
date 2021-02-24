@@ -16,7 +16,7 @@ const Main = () => {
     const dispatch = useDispatch();
     React.useEffect(() => {
         dispatch(readCalendarData(uid));
-    }, [user, uid])
+    }, [uid])
 
 
     return (

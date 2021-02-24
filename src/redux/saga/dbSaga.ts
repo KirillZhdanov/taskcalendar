@@ -1,23 +1,30 @@
 import { put, takeEvery, call } from "redux-saga/effects";
 import { ReadDBWorker, WriteDBWorker } from "../../models";
-import { WRITE_TO_DB, setCalendarData, READ_CALENDAR_DATA } from "../actions";
+import {
+  WRITE_TO_DB,
+  setCalendarData,
+  READ_CALENDAR_DATA,
+  setError,
+} from "../actions";
 import rsf from "../rsf";
-
+interface Response {}
 function* writeToDBWorker({ user, dbcell }: WriteDBWorker) {
   try {
     yield call(rsf.database.create, `tasks/${user}`, dbcell);
-    const read = yield call(rsf.database.read, `tasks/${user}`);
+    const read: Response = yield call(rsf.database.read, `tasks/${user}`);
     yield put(setCalendarData(Object.values(read)));
+    yield put(setError(""));
   } catch (error) {
-    console.log(`Write to db failed: ${error}`);
+    yield put(setError(error.message));
   }
 }
 function* readFromDBWorker({ user }: ReadDBWorker) {
   try {
-    const read = yield call(rsf.database.read, `tasks/${user}`);
+    const read: Response = yield call(rsf.database.read, `tasks/${user}`);
     if (read) yield put(setCalendarData(Object.values(read)));
+    yield put(setError(""));
   } catch (error) {
-    console.log(`Read from db failed: ${error}`);
+    yield put(setError(error.message));
   }
 }
 

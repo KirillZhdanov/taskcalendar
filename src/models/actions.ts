@@ -19,3 +19,7 @@ export type CalendarAction = {
   type: string;
   payload: Task[];
 };
+export type ErrorAction = {
+  type: string;
+  payload: string;
+};

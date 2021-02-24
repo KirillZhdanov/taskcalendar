@@ -13,7 +13,6 @@ const getListData = (value: moment.Moment, data: Task[]) => {
 
 const dateCellRender = (value: moment.Moment, data: Task[]) => {
     const listData = getListData(value, data);
-
     const taskDayHoursTotal = listData.reduce((acc: number, curr: Task) => acc + Number(curr.hours), 0) || 0;
     return (
         <div className="tasks" >

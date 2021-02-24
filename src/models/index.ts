@@ -1,5 +1,3 @@
-import { type } from "os";
-import { string } from "yup/lib/locale";
 import {
   LoginEmailPayload,
   RegistrationEmailPayload,
@@ -25,10 +23,11 @@ export type {
   AuthEmailWorker,
 };
 
-export type AddNewTaskData = {
+export type NewTaskDataToAdd = {
   taskDate: string;
   hours: number;
 };
+
 export type AuthFormInitialValues = {
   userName: string;
   email: string;
@@ -41,6 +40,9 @@ export type Task = {
 
 export type CalendarState = {
   tasks: Task[];
+};
+export type ErrorsState = {
+  error: string;
 };
 
 export interface BgStyled {

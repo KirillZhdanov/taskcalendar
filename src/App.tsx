@@ -3,13 +3,9 @@ import './App.css';
 import { Switch, Route } from 'react-router-dom'
 import { Main, NotFound, Auth, AddNewTask } from './pages';
 import { Header, ProtectedRouter } from './components';
-import { useAuthState } from "react-firebase-hooks/auth";
-import { auth } from './redux/rsf';
 
 
 function App() {
-  const [user] = useAuthState(auth)
-  React.useEffect(() => { }, [user])
   return (
     <div className="App" >
       <Header />

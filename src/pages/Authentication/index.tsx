@@ -12,7 +12,7 @@ import { setError } from '../../redux/actions';
 
 const Auth = () => {
     const [user] = useAuthState(auth)
-    const state = useSelector((state: RootState) => state.errorsReducer);
+    const { error } = useSelector((state: RootState) => state.errorsReducer);
     const dispatch = useDispatch()
     const openNotificationWithIcon = (data: string) => {
         notification["error"]({
@@ -22,9 +22,9 @@ const Auth = () => {
         dispatch(setError(''))
     }
     React.useEffect(() => {
-        if (state.error)
-            openNotificationWithIcon(state.error);
-    }, [state.error])
+        if (error)
+            openNotificationWithIcon(error);
+    }, [error])
     return (
         <FormContainer>{
             !user ? (

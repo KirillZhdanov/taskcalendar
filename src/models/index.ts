@@ -54,3 +54,6 @@ export interface ProtectedRoute {
   path: string;
   component: () => JSX.Element;
 }
+export interface DBResponse {
+  [id: string]: Task;
+}

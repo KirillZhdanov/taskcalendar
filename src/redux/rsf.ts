@@ -6,7 +6,7 @@ import "firebase/database";
 import ReduxSagaFirebase from "redux-saga-firebase";
 
 const firebaseApp = firebase.initializeApp({
-  apiKey: "AIzaSyCvilick1jc2zKzYahY1QKeBD5ISEDaTPM",
+  apiKey: "",
   authDomain: "taskcalendar2021.firebaseapp.com",
   projectId: "taskcalendar2021",
   storageBucket: "taskcalendar2021.appspot.com",
